@@ -1,0 +1,71 @@
+version: "3.8"
+
+volumes:
+  wordpress:
+    name: wordpress_vl
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/alexis/42/Inception/srcs/requirements/wordpress
+
+  mariadb:
+    name: mariadb_vl
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/alexis/42/Inception/srcs/requirements/mariadb
+
+networks:
+  inception:
+    driver: bridge
+    name: inception
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    image: inception-nginx
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/var/www/wordpress #to verify
+    ports:
+      - "443:443"
+    networks:
+    - inception
+    env_file: .env
+    restart: on-failure
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: inception-wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress:/var/www/wordpress #to verify
+    networks:
+      - inception
+    env_file: .env
+    restart: on-failure
+    # expose:
+    # - "9000"
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: inception-mariadb
+    volumes:
+    - mariadb:/var/lib/mysql
+    networks:
+      - inception
+    # expose:
+    # - "3306"
+
+
+
+
+
+# network line ?
+# depends_on   organise un docker
