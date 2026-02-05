@@ -12,11 +12,9 @@ RUN	mkdir -p etc/nginx/ssl && \
 	-keyout /etc/nginx/ssl/certificat.key \
 	-subj "/C=FR/ST=IDF/L=Perpignan/O=42/OU=42/CN=acoste.42.fr/UID=acoste"
 
-# COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /var/www/wordpress
-
-
 
 EXPOSE 443
 
