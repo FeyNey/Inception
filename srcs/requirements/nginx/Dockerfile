@@ -2,11 +2,11 @@ FROM debian:bookworm
 
 #install nginx / openssl
 RUN apt-get update && \
-	 apt-get install -y nginx openssl && \
+	apt-get install -y nginx openssl && \
 	rm -rf /var/lib/apt/lists/*
 
 #create certifcat
-RUN	mkdir -p etc/nginx/ssl && \
+RUN	mkdir -p /etc/nginx/ssl && \
 	openssl req -x509 -nodes \
 	-out /etc/nginx/ssl/certificat.crt \
 	-keyout /etc/nginx/ssl/certificat.key \

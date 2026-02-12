@@ -6,7 +6,7 @@
 #    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 14:31:02 by acoste            #+#    #+#              #
-#    Updated: 2026/01/29 18:26:21 by acoste           ###   ########.fr        #
+#    Updated: 2026/02/10 15:56:29 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,16 @@
 
 NAME		=	Inception
 
-SRC	=	src/docker-compose.yml
+SRC	=	srcs/docker-compose.yml
 
-up :
-	srcs/docker compose up
+up:
+	mkdir -p srcs/acoste/data/mariadb
+	mkdir -p srcs/acoste/data/wordpress
+	docker compose -f $(SRC) up --build -d
+	docker compose up
+
+down:
+	docker compose -f $(SRC) down -v
 
 
 # OBJ			=	$(SRC:.cpp=.o)
@@ -44,11 +50,13 @@ up :
 # $(NAME)		:	$(OBJ)
 # 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-# clean		:
-# 				rm -f $(OBJ)
+clean		: down
+	sudo rm -rf srcs/acoste/data/mariadb/*
+	sudo rm -rf srcs/acoste/data/wordpress/*
 
-# fclean		:	clean
-# 				rm -f $(NAME)
+fclean		:	clean
+	docker system prune -af --volumes
+	sudo rm -rf srcs/acoste/data
 
 # re			:	fclean all
 

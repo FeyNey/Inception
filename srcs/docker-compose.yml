@@ -7,7 +7,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/alexis/42/Inception/srcs/requirements/wordpress
+      device: ${PWD}/acoste/data/wordpress
 
   mariadb:
     name: mariadb_vl
@@ -15,7 +15,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/alexis/42/Inception/srcs/requirements/mariadb
+      device: ${PWD}/acoste/data/mariadb
 
 networks:
   inception:
@@ -30,11 +30,11 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress:/var/www/wordpress #to verify
+      - wordpress:/var/www/wordpress
     ports:
       - "443:443"
     networks:
-    - inception
+     - inception
     env_file: .env
     restart: on-failure
   wordpress:
@@ -42,7 +42,7 @@ services:
     build: ./requirements/wordpress
     image: inception-wordpress
     depends_on:
-      - mariadb
+      - mariadb #mariadb to modify
     volumes:
       - wordpress:/var/www/wordpress #to verify
     networks:
@@ -62,10 +62,5 @@ services:
       - inception
     expose:
       - "3306"
-
-
-
-
-
-# network line ?
-# depends_on   organise un docker
+    env_file: .env
+    restart: on-failure
