@@ -21,7 +21,7 @@ datadir                 = /var/lib/mysql
 port = 3306
 socket = /var/run/mysqld/mysqld.sock
 pid-file = /var/run/mysqld/mysqld.pid
-log_error = /var/log/mysql/error.log
+# log_error = /var/log/mysql/error.log
 
 
 # Broken reverse DNS slows down connections considerably and name resolve is

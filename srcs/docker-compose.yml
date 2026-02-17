@@ -7,7 +7,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/acoste/data/wordpress
+      device: ${PWD}/srcs/acoste/data/wordpress
 
   mariadb:
     name: mariadb_vl
@@ -15,7 +15,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/acoste/data/mariadb
+      device: ${PWD}/srcs/acoste/data/mariadb
 
 networks:
   inception:
