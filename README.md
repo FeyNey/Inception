@@ -13,7 +13,7 @@ Mandatory part is compose of :
  - WorPress Website who will present our blog
  - MariaDB database who will store our Wordpress Data
 
-All of this throught a bind-mount docker, each service has it container.
+All of this throught a bind-mount docker, each service has it own container.
 
 ---
 
@@ -58,6 +58,26 @@ AI use : Indentation level in docker-compose, verification of global variable wi
 ---
 
 ### Project description
+
+Inception is a project that require a lot of understanding of docker, we have to setup :
+
+A docker container that contains NGINX with TLSv.2 or TLSv.3
+
+An other docker that contains MariaDB
+
+A volume that contains WordPress database
+
+A second volume that contains WordPress database
+
+This two volumes need to be named and their data should be store inside /home/acoste/data
+
+We need to create a docker-network that establishes the connection between our containers and they must restart in case of a crash
+
+Wordpress should have 2 users, one of them being the administrator
+
+and some others ligther obligations
+
+Thought the conception of all the project, you will have to learn how Dockerfile are made, how docker-compose work, the implementation of a serveur, website and database, communication between services, configuration files and a some more, it's a very didactic projet
 
 #### Virtual Machines vs Docker
 
