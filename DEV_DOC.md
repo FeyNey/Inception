@@ -28,8 +28,8 @@ make or make re
 ````
 
 ````sh
-docker compose down -v && docker system prune -af
-docker compose build --no-cache && docker compose up
+docker compose -f srcs/docker-compose.ylm down -v && docker system prune -af
+docker compose -f srcs/docker-compose.ylm build --no-cache && docker compose -f srcs/docker-compose up
 ````
 ### Managing containers and volumes
 
@@ -49,4 +49,6 @@ Beside that, use regular command of docker, down, system, build, up
 All the data of the project will be stored through
 ````sh
 /home/acoste/data/   path
-````
+```
+
+You must use make fclean to delete all persistent data, otherwise your website will keep it's information and use it on relaunch

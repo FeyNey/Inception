@@ -5,8 +5,8 @@
 This project deploys a complete web stack using Docker and Docker Compose.
 The stack provides the following services:
 
-- **Nginx**: Web server acting as a reverse proxy with TLS
-- **WordPress**: Website and CMS
+- **Nginx**: Web server with TLS
+- **WordPress**: Website
 - **MariaDB**: Database used by WordPress
 
 All services run inside isolated Docker containers and communicate over a
@@ -29,7 +29,11 @@ make
 make down
 ````
 
-### Stop the project
+### Stop and clean files of the project
+
+````sh
+make clean
+````
 
 ````sh
 make fclean
@@ -37,7 +41,7 @@ make fclean
 
 ## Accessing the Website and Admin Panel
 
-For accessing website you need to use either localhost by default or acoste.42.fr if you wan't to use it, add this line to your /etc/hosts file for your browser to recognise it
+For accessing website you need to use either localhost by default or acoste.42.fr if you wan't to use it, add this line to your /etc/hosts file. After that your browser will recognise it
 ````sh
 127.0.0.1    acoste.42.fr
 ````
@@ -48,6 +52,10 @@ If you wan't to acces admin panel goes to
 ````sh
 https://acoste.42.fr/wp-admin or https://localhost/wp-admin
 ````
+
+##Locate and manage credentials
+
+Search for an hidden file in srcs it isn't accessible in your containers/volumes  you can't change data in it, variable are setup by default
 
 ### Checking Service Status
 
@@ -62,6 +70,3 @@ docker logs nginx
 docker logs wordpress
 docker logs mariadb
 ````
-
-
-

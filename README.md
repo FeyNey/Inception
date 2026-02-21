@@ -13,7 +13,7 @@ Mandatory part is compose of :
  - WorPress Website who will present our blog
  - MariaDB database who will store our Wordpress Data
 
-All of this throught a bind-mount docker, each service has it own container.
+Each service has it own container.
 
 ---
 
@@ -49,9 +49,9 @@ make re
 Dockerfiles doc :  https://docs.docker.com/reference/dockerfile/
 
 Install services and use Docker exec -it <container> /bin/bash
-replace <container> with the name of your docker or use docker ps when your docker is launch replace it with the ID of your container
+replace <container> with the name of your container or use docker ps when your docker is launch replace it with the ID of your container
 
-Then search into all configs files of the services, look throught commentary they are realy helpfull
+Then search into all configs files of the services, look throught dev/setup commentary they are realy helpfull
 
 AI use : Indentation level in docker-compose, verification of global variable with .env file, modelisation of the network project to clarify it, debugging purpose for MariaDB startup and link with wordpress
 
